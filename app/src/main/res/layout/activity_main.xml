@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/rb_button"
+        app:layout_constraintTop_toTopOf="parent"></androidx.viewpager.widget.ViewPager>
+
+
+
+
+    <RadioGroup
+        android:background="#F3F1F1"
+        android:id="@+id/rb_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/button_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/rb_button_message_selected"
+            android:gravity="center"
+            android:text="信息"
+            android:textColor="@drawable/rb_button_text"/>
+
+        <RadioButton
+            android:id="@+id/button_frends"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/rb_button_frendsselected"
+            android:gravity="center"
+            android:text="通讯录"
+            android:textColor="@drawable/rb_button_text"/>
+
+        <RadioButton
+            android:id="@+id/button_my"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:width="0dp"
+            android:button="@null"
+            android:drawableTop="@drawable/tb_button_myselected"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@drawable/rb_button_text"/>
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
