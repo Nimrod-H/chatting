@@ -4,12 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.coolweather.chatting.adapters.fragmentAdapter;
+import com.coolweather.chatting.socket.ClientManager;
+
+import java.io.IOException;
+import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,ViewPager.OnPageChangeListener{
     private RadioButton rb_message;
@@ -26,12 +32,16 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            //修改为深色，因为我们把状态栏的背景色修改为主题色白色，默认的文字及图标颜色为白色，导致看不到了。
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
         mFragmentAdapter = new fragmentAdapter(getSupportFragmentManager());
         initView();
         rg_tab_bar.setOnCheckedChangeListener(this);
         vpager.setOnPageChangeListener(this);
-        Intent intent = new Intent(MainActivity.this,chatiingActivity.class);
-        startActivity(intent);
+
     }
     public void initView(){
         rb_main = findViewById(R.id.button_message);

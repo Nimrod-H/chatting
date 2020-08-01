@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true">
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -44,12 +45,8 @@
             android:drawableTop="@drawable/and" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/message_recycle_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="信息界面"
-/>
-
+        android:layout_height="731dp"></androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
