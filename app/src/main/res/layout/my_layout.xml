@@ -8,7 +8,7 @@
     android:background="#ECECEC"
     android:fitsSystemWindows="true"
 
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <RelativeLayout
         android:background="#ffffff"

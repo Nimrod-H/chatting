@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value = "ChatRepertory"></dbname>
+    <version value = "2"></version>
+    <list>
+        <mapping class = "com.coolweather.chatting.entity.Users"></mapping>
+        <mapping class = "com.coolweather.chatting.entity.frendship"></mapping>
+        <mapping class = "com.coolweather.chatting.entity.Msg"></mapping>
+
+    </list>
+</litepal>

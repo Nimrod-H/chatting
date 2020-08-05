@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -14,11 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.coolweather.chatting.MainActivity;
-import com.coolweather.chatting.Msg;
+import com.coolweather.chatting.entity.Msg;
 import com.coolweather.chatting.R;
 import com.coolweather.chatting.adapters.FrendsAdapter;
-import com.coolweather.chatting.chatiingActivity;
+import com.coolweather.chatting.activity.chatiingActivity;
 
 import java.util.ArrayList;
 import java.util.Date;

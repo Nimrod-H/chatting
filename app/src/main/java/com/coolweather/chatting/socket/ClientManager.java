@@ -1,6 +1,6 @@
 package com.coolweather.chatting.socket;
 
-import com.coolweather.chatting.Msg;
+import com.coolweather.chatting.entity.Msg;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +11,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.SocketHandler;
 
 public class ClientManager {
         private static Map<String, Socket> clientList = new HashMap<>();

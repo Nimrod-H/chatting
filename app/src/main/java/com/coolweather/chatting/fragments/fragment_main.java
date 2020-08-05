@@ -1,6 +1,5 @@
 package com.coolweather.chatting.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.coolweather.chatting.MainActivity;
-import com.coolweather.chatting.Msg;
+import com.coolweather.chatting.entity.Msg;
 import com.coolweather.chatting.R;
 import com.coolweather.chatting.adapters.MessagewAdapter;
-import com.coolweather.chatting.chatiingActivity;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class fragment_main extends Fragment {
     //在此处设定对各种组件的初始化等操作
