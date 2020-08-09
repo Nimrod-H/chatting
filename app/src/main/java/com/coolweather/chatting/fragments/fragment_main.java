@@ -1,5 +1,6 @@
 package com.coolweather.chatting.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.coolweather.chatting.activity.SignActivity;
 import com.coolweather.chatting.entity.Msg;
 import com.coolweather.chatting.R;
 import com.coolweather.chatting.adapters.MessagewAdapter;
@@ -54,6 +56,5 @@ public class fragment_main extends Fragment {
             }
         });
         return view;
-
     }
 }
