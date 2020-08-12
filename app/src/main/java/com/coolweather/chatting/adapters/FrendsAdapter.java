@@ -29,4 +29,5 @@ public class FrendsAdapter extends ArrayAdapter<Msg> {
             textView.setText(msg.getContent());
             return view;                    //返回设置完的view
     }
+
 }

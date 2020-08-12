@@ -13,11 +13,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.coolweather.chatting.entity.Msg;
 import com.coolweather.chatting.R;
 import com.coolweather.chatting.adapters.MsgAdapter;
@@ -26,9 +28,11 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,7 +51,18 @@ public class chatiingActivity extends AppCompatActivity {
     Socket client = null;
     BufferedReader msg;
     BufferedWriter out;
+
     @Override
+    protected void onStop() {
+        super.onStop();
+        try {
+            client.shutdownOutput();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -72,32 +87,19 @@ public class chatiingActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    client = new Socket("192.168.31.100", 10010);
-                    InputStream inputStream = client.getInputStream();
-
-                    while( true) {
-                        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-                        Msg getMsg = null;
-                        if((getMsg = (Msg) objectInputStream.readObject())!= null){
-                            Message message = Message.obtain();
-                            message.what = 1;
-                            message.obj = getMsg;
-                            handler.sendMessage(message);
-                        }else{
-                            break;
-                        }
-
+                    client = new Socket("192.168.31.101", 10010);
+                    Log.d("ssssasss","开始接受数据");
+                    msg =new BufferedReader(new InputStreamReader(client.getInputStream(),"UTF-8"));//对缓冲区数据读取
+                    String info = new String();
+                    while((info = msg.readLine())!= null) {
+                          Msg getMsg = (Msg) JSONObject.parseObject(info,Msg.class);
+                          Log.d("ssssssS",info);
+                          Message message = Message.obtain();
+                          message.what = 1;
+                          message.obj = getMsg;
+                          handler.sendMessage(message);
                     }
-
-                    //int len;
-                    //while ((len = inputStream.read(buffer)) != -1) {
-                     //   String data = new String(buffer, 0, len);
-                     //   //发送到主线程中收到的数据
-                     //   Message message = Message.obtain();
-                     //   message.what = 1;
-                     //   message.obj = data;
-                     //   handler.sendMessage(message);
-                    //}
+                    Log.d("ssssasss","退出接受数据");
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -108,7 +110,6 @@ public class chatiingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 msgRecycleView.scrollToPosition(msgList.size() - 1);
-
                     if((outMsg = inputText.getText().toString()).length() >0){
                     final Msg sendMsg = new Msg(outMsg, Msg.TYPE_SEND, new Date(), 1, 2, Msg.noReceived, client.getLocalSocketAddress().toString());
                     msgList.add(sendMsg);
@@ -119,10 +120,10 @@ public class chatiingActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             try {
-                                OutputStream outputStream = client.getOutputStream();
-                                ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-                                objectOutputStream.writeObject(sendMsg);
-                                objectOutputStream.flush();
+                                out =new BufferedWriter(new OutputStreamWriter(client.getOutputStream(),"UTF-8"));
+                                Log.d("ssssss",JSONObject.toJSONString(sendMsg));
+                                out.write(JSONObject.toJSONString(sendMsg) + "\n");
+                                out.flush();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

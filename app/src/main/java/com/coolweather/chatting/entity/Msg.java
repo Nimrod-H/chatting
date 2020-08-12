@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Msg  extends LitePalSupport implements Serializable  {
+    private static final long serialVersionUID = -5809782578272943999L;
     public static final int TYPE_RECEIVED = 0;              //信息类型，1为发送，0为接受
     public static final int TYPE_SEND = 1;
     public static final boolean Received = true;            //信息是否已经被接收
@@ -50,6 +51,8 @@ public class Msg  extends LitePalSupport implements Serializable  {
         this.type = type;
     }
 
+    public Msg() {
+    }
 
     public String getLocalSocketAddress() {
         return localSocketAddress;

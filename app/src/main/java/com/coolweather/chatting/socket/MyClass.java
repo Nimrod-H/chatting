@@ -8,6 +8,5 @@ package com.coolweather.chatting.socket;
 public class MyClass {
     public static void main(String[] args) throws IOException, ParseException {
         ClientManager.startServer();
-
     }
 }
